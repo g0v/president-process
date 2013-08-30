@@ -6,7 +6,7 @@ import sys
 import logging
 import datetime
 import csv
-import uniout
+#import uniout
 from icalendar import Calendar, Event
 from optparse import OptionParser
 from pprint import pprint
@@ -82,6 +82,9 @@ def ics2csv(input_file, output_folder):
                 events.append(event)
 #        pprint(events[0])
 #        pprint(events[1])
+
+        dtstart_index = Event.canonical_order.index('DTSTART')
+        events.sort(reverse=True, key=lambda x: x[dtstart_index])
 
         # Save events to csv output
         with open(path, 'wb') as dst:
