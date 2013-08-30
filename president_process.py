@@ -19,7 +19,7 @@ def check_web():
     h = httplib2.Http("")
     resp, cont = h.request("http://www.president.gov.tw/Default.aspx?tabid=93")
     
-    if cont == open("schedules_backup", "rb").read():
+    if cont.decode('utf-8').replace("\r\n", "\n") == open("schedules_backup").read():
         return 1
     else:
         open("schedules_backup", "wb").write(cont)
