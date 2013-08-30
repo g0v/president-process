@@ -25,6 +25,11 @@ def check_web():
         open("schedules_backup", "wb").write(cont)
         return 0
 
+
+def log(msg):
+    open("log", "a").write("%s %s\n" % (time.ctime(), msg))
+
+
 if __name__ == '__main__':
     process_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -36,8 +41,11 @@ if __name__ == '__main__':
         exit()
    
     if check_web():
-        print("no change for web......")
+        log("no change for web......")
         exit()
+    else:
+        log("update......")
+
 
     # to json
     os.chdir(env['PRESIDENT_OUTPUT_DIR'])
