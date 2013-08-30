@@ -3,6 +3,7 @@
 import os
 import sys
 import subprocess
+import time
 import httplib2
 import parse
 
@@ -19,7 +20,7 @@ def check_web():
     h = httplib2.Http("")
     resp, cont = h.request("http://www.president.gov.tw/Default.aspx?tabid=93")
     
-    if cont.decode('utf-8').replace("\r\n", "\n") == open("schedules_backup").read():
+    if len(cont) == len(open("schedules_backup", "rb").read()):
         return 1
     else:
         open("schedules_backup", "wb").write(cont)
@@ -45,7 +46,8 @@ if __name__ == '__main__':
         exit()
     else:
         log("update......")
-
+  
+    exit()
 
     # to json
     os.chdir(env['PRESIDENT_OUTPUT_DIR'])
