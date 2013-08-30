@@ -28,7 +28,10 @@ def check_web():
 
 
 def log(msg):
+    global env, process_path
+    os.chdir(process_path)
     open("log", "a").write("%s %s\n" % (time.ctime(), msg))
+    os.chdir(env['GIT_DIR'])
 
 
 if __name__ == '__main__':
