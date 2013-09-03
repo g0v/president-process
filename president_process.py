@@ -28,8 +28,10 @@ def check_web():
 
 
 def log(msg):
+    global env, process_path
+    os.chdir(process_path)
     open("log", "a").write("%s %s\n" % (time.ctime(), msg))
-
+    os.chdir(env['GIT_DIR'])
 
 if __name__ == '__main__':
     process_path = os.path.dirname(os.path.realpath(__file__))
@@ -38,23 +40,22 @@ if __name__ == '__main__':
     env['GIT_DIR'] = env['PRESIDENT_OUTPUT_DIR']
 
     if not env['PRESIDENT_OUTPUT_DIR']:
-        print("out......")
+        log("out......")
         exit()
-   
+
+    os.chdir(process_path)   
     if check_web():
         log("no change for web......")
         exit()
     else:
         log("update......")
   
-    exit()
-
     # to json
     os.chdir(env['PRESIDENT_OUTPUT_DIR'])
     if version_3k:
     	parse.update_schedules('president.json', 'president.json')
     else:
-        print("Please use 3k...")
+        log("Please use 3k...")
         exit()
 
     # to ics
