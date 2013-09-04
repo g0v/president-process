@@ -41,23 +41,22 @@ if __name__ == '__main__':
     env['GIT_DIR'] = env['PRESIDENT_OUTPUT_DIR']
 
     if not env['PRESIDENT_OUTPUT_DIR']:
-        print("out......")
+        log("out......")
         exit()
-   
+
+    os.chdir(process_path)   
     if check_web():
         log("no change for web......")
         exit()
     else:
         log("update......")
   
-    exit()
-
     # to json
     os.chdir(env['PRESIDENT_OUTPUT_DIR'])
     if version_3k:
     	parse.update_schedules('president.json', 'president.json')
     else:
-        print("Please use 3k...")
+        log("Please use 3k...")
         exit()
 
     # to ics
