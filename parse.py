@@ -125,6 +125,7 @@ def update_schedules(json_path, output_path):
         
     open(output_path, "w").write(to_json(d))
 
+
 def init_json():
     result = {}
     for page in range(1, 176):
