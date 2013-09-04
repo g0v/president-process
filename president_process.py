@@ -32,10 +32,7 @@ def log(msg):
     os.chdir(process_path)
     open("log", "a").write("%s %s\n" % (time.ctime(), msg))
     os.chdir(env['GIT_DIR'])
-<<<<<<< HEAD
-=======
 
->>>>>>> 9358afbd49ef086a08328c2edc132c09a77f7b0b
 
 if __name__ == '__main__':
     process_path = os.path.dirname(os.path.realpath(__file__))
